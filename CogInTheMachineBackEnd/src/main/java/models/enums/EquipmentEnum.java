@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum Equipment {
+public enum EquipmentEnum {
 
     LAPTOP("Laptop"),
     PHONE("Phone"),
@@ -9,7 +9,7 @@ public enum Equipment {
 
     private final String item;
 
-    Equipment(String item) {
+    EquipmentEnum(String item) {
         this.item = item;
     }
 

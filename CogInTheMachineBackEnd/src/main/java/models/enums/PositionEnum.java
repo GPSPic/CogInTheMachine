@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum Position {
+public enum PositionEnum {
     CEO("CEO"),
     COO("COO"),
     CTO("CTO"),
@@ -18,7 +18,7 @@ public enum Position {
 
     private final String role;
 
-    Position(String role) {
+    PositionEnum(String role) {
         this.role = role;
     }
 

@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum Department {
+public enum DepartmentEnum {
     EXECUTIVE("Executive"),
     HR("HR"),
     OPERATIONS("Operations"),
@@ -10,7 +10,7 @@ public enum Department {
 
     private final String department;
 
-    Department(String department) {
+    DepartmentEnum(String department) {
         this.department = department;
     }
 

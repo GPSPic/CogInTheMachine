@@ -1,6 +1,6 @@
 package models.enums;
 
-public enum Access {
+public enum AccessEnum {
 
     ADMIN,
     HR,
