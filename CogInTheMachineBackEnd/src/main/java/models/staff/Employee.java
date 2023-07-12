@@ -111,11 +111,12 @@ public class Employee {
         this.contactNumber = contactNumber;
         this.email = email;
         this.NIN = NIN;
-        this.manager = Optional.empty();
+        this.managerId = (long)1;
         this.reasonableAdjustments = "";
         this.companyEquipment = new ArrayList<>();
         this.medicalInfo = "";
-//        this.emergencyContact = new EmergencyContact(1, "TBF", "TBF", 0044_000_000_0000, "TBF");
+        this.emergencyContactId = (long)1;
+        this.performanceReviewId = new ArrayList<>();
     }
 
     public Employee() {
@@ -129,20 +130,20 @@ public class Employee {
         this.id = id;
     }
 
-    public Optional<Manager> getManager() {
-        return manager;
+    public Long getManagerId() {
+        return managerId;
     }
 
-    public void setManager(Optional<Manager> manager) {
-        this.manager = manager;
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
-    public ArrayList<PerformanceReview> getPerformanceReviews() {
-        return performanceReviews;
+    public ArrayList<Long> getPerformanceReviewId() {
+        return performanceReviewId;
     }
 
-    public void setPerformanceReviews(ArrayList<PerformanceReview> performanceReviews) {
-        this.performanceReviews = performanceReviews;
+    public void setPerformanceReviewId(ArrayList<Long> performanceReviewId) {
+        this.performanceReviewId = performanceReviewId;
     }
 
     public String getFirstName() {
@@ -271,5 +272,13 @@ public class Employee {
 
     public void setNIN(String NIN) {
         this.NIN = NIN;
+    }
+
+    public Long getEmergencyContactId() {
+        return emergencyContactId;
+    }
+
+    public void setEmergencyContactId(Long emergencyContactId) {
+        this.emergencyContactId = emergencyContactId;
     }
 }
