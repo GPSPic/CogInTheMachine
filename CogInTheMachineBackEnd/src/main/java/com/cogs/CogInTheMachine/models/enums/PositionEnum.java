@@ -1,4 +1,4 @@
-package models.enums;
+package com.cogs.CogInTheMachine.models.enums;
 
 public enum PositionEnum {
     CEO("CEO"),

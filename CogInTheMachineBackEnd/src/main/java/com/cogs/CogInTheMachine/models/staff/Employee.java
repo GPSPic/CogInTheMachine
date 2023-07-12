@@ -1,15 +1,13 @@
-package models.staff;
+package com.cogs.CogInTheMachine.models.staff;
 
-import models.contact.EmergencyContact;
-import models.enums.AccessEnum;
-import models.enums.DepartmentEnum;
-import models.enums.EquipmentEnum;
-import models.review.PerformanceReview;
+import com.cogs.CogInTheMachine.models.enums.AccessEnum;
+import com.cogs.CogInTheMachine.models.enums.DepartmentEnum;
+import com.cogs.CogInTheMachine.models.enums.EquipmentEnum;
+import com.sun.istack.Nullable;
 
 import javax.persistence.Column;
-
-
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Optional;
@@ -22,13 +20,13 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-//    @Column(name="manager_id")
-    private Long managerId;
-
-    @OneToMany
-//    @Column(name="performance_review_id")
-    private ArrayList<Long> performanceReviewId;
+//    @ManyToOne
+////    @Column(name="manager_id")
+//    private Long managerId;
+//
+//    @OneToMany
+////    @Column(name="performance_review_id")
+//    private ArrayList<Long> performanceReviewId;
 
     @Column(name="first_name")
     private String firstName;
@@ -37,13 +35,13 @@ public class Employee {
     private String lastName;
 
     @Column(name="dob")
-    private GregorianCalendar dob;
+    private LocalDate dob;
 
     @Column(name="start_date")
-    private GregorianCalendar startDate;
+    private LocalDate startDate;
 
     @Column(name="end_date")
-    private GregorianCalendar endDate;
+    private Optional<LocalDate> endDate;
 
     @Column(name="permission")
     private AccessEnum permission;
@@ -67,7 +65,7 @@ public class Employee {
     private ArrayList<EquipmentEnum> companyEquipment;
 
     @Column(name="contact_number")
-    private long contactNumber;
+    private String contactNumber;
 
     @Column(name="email")
     private String email;
@@ -78,31 +76,28 @@ public class Employee {
     @Column(name="nin")
     private String NIN;
 
-    @OneToOne
-//    @Column(name="emergency_contact")
-    private Long emergencyContactId;
+//    @OneToOne
+////    @Column(name="emergency_contact")
+//    private Long emergencyContactId;
 
-    public Employee(Long id,
-                    String firstName,
+    public Employee(String firstName,
                     String lastName,
-                    GregorianCalendar dob,
-                    GregorianCalendar startDate,
-                    GregorianCalendar endDate,
+                    LocalDate dob,
+                    LocalDate startDate,
                     AccessEnum permission,
                     double salary,
                     DepartmentEnum department,
                     String photo,
                     boolean active,
-                    long contactNumber,
+                    String contactNumber,
                     String email,
                     String NIN
                     ) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.startDate = startDate;
-        this.endDate = endDate;
+        this.endDate = Optional.empty();
         this.permission = permission;
         this.salary = salary;
         this.department = department;
@@ -111,12 +106,12 @@ public class Employee {
         this.contactNumber = contactNumber;
         this.email = email;
         this.NIN = NIN;
-        this.managerId = (long)1;
+//        this.managerId = (long)1;
         this.reasonableAdjustments = "";
         this.companyEquipment = new ArrayList<>();
         this.medicalInfo = "";
-        this.emergencyContactId = (long)1;
-        this.performanceReviewId = new ArrayList<>();
+//        this.emergencyContactId = (long)1;
+//        this.performanceReviewId = new ArrayList<>();
     }
 
     public Employee() {
@@ -128,22 +123,6 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(Long managerId) {
-        this.managerId = managerId;
-    }
-
-    public ArrayList<Long> getPerformanceReviewId() {
-        return performanceReviewId;
-    }
-
-    public void setPerformanceReviewId(ArrayList<Long> performanceReviewId) {
-        this.performanceReviewId = performanceReviewId;
     }
 
     public String getFirstName() {
@@ -162,27 +141,27 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public GregorianCalendar getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(GregorianCalendar dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
-    public GregorianCalendar getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(GregorianCalendar startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public GregorianCalendar getEndDate() {
+    public Optional<LocalDate> getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(GregorianCalendar endDate) {
+    public void setEndDate(Optional<LocalDate> endDate) {
         this.endDate = endDate;
     }
 
@@ -242,11 +221,11 @@ public class Employee {
         this.companyEquipment = companyEquipment;
     }
 
-    public long getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(long contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 
@@ -272,13 +251,5 @@ public class Employee {
 
     public void setNIN(String NIN) {
         this.NIN = NIN;
-    }
-
-    public Long getEmergencyContactId() {
-        return emergencyContactId;
-    }
-
-    public void setEmergencyContactId(Long emergencyContactId) {
-        this.emergencyContactId = emergencyContactId;
     }
 }

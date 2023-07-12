@@ -1,6 +1,4 @@
-package models.contact;
-
-import models.staff.Employee;
+package com.cogs.CogInTheMachine.models.contact;
 
 import javax.persistence.*;
 
