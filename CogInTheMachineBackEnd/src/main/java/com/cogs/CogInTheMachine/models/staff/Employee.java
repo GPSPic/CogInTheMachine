@@ -41,7 +41,7 @@ public class Employee {
     private LocalDate startDate;
 
     @Column(name="end_date")
-    private Optional<LocalDate> endDate;
+    private LocalDate endDate;
 
     @Column(name="permission")
     private AccessEnum permission;
@@ -97,7 +97,7 @@ public class Employee {
         this.lastName = lastName;
         this.dob = dob;
         this.startDate = startDate;
-        this.endDate = Optional.empty();
+        this.endDate = LocalDate.of(2300, 1, 1);
         this.permission = permission;
         this.salary = salary;
         this.department = department;
@@ -157,11 +157,11 @@ public class Employee {
         this.startDate = startDate;
     }
 
-    public Optional<LocalDate> getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Optional<LocalDate> endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

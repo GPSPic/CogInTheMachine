@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.GregorianCalendar;
 
 @Profile("!test")
-//@Component
+@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -40,5 +40,6 @@ public class DataLoader implements ApplicationRunner {
                 "bob.bobberson@coginthemachine.com",
                 "JW123456"
                 );
+        employeeRepository.save(droneTest);
     }
 }
