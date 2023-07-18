@@ -1,8 +1,10 @@
 package com.cogs.CogInTheMachine.components;
 
+import com.cogs.CogInTheMachine.models.contact.EmergencyContact;
 import com.cogs.CogInTheMachine.models.enums.AccessEnum;
 import com.cogs.CogInTheMachine.models.enums.DepartmentEnum;
 import com.cogs.CogInTheMachine.models.staff.Employee;
+import com.cogs.CogInTheMachine.repositories.EmergencyContactRepository;
 import com.cogs.CogInTheMachine.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -20,12 +22,15 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    EmergencyContactRepository emergencyContactRepository;
+
     public DataLoader() {
     }
 
     public void run(ApplicationArguments args) throws Exception {
-        LocalDate bobDob = LocalDate.of(1990, 07, 3);
-        LocalDate bobStartDate = LocalDate.of(2020, 07, 3);
+        LocalDate bobDob = LocalDate.of(1990, 7, 3);
+        LocalDate bobStartDate = LocalDate.of(2020, 7, 3);
         Employee droneTest =  new Employee(
                 "Bob",
                 "Bobberson",
@@ -41,5 +46,8 @@ public class DataLoader implements ApplicationRunner {
                 "JW123456"
                 );
         employeeRepository.save(droneTest);
+
+        EmergencyContact kate = new EmergencyContact("Kate", "Bobberson-Bobbington", "07711223349", "Niece", droneTest);
+        emergencyContactRepository.save(kate);
     }
 }

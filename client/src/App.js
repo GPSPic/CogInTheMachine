@@ -11,12 +11,11 @@ function App() {
     .then((data) => setEmployees(data))
   }, []);
 
-  console.log(employees);
-  const bob = employees[0]?.firstName
-
+  const helloBob = <p>Hello {employees[0]?.firstName}</p> 
+  
   return (
     <div className="App">
-      {employees.length > 0 ? <p>Hello {bob}</p> : <p>Hello World</p>}
+      {helloBob}
     </div>
   );
 }

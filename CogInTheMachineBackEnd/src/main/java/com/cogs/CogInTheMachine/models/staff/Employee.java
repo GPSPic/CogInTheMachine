@@ -1,16 +1,17 @@
 package com.cogs.CogInTheMachine.models.staff;
 
+import com.cogs.CogInTheMachine.models.contact.EmergencyContact;
 import com.cogs.CogInTheMachine.models.enums.AccessEnum;
 import com.cogs.CogInTheMachine.models.enums.DepartmentEnum;
 import com.cogs.CogInTheMachine.models.enums.EquipmentEnum;
-import com.sun.istack.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Column;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.Optional;
+import java.util.List;
 
 @Entity
 @Table(name="employees")
@@ -21,12 +22,16 @@ public class Employee {
     private Long id;
 
 //    @ManyToOne
-////    @Column(name="manager_id")
+//   @Column(name="manager_id")
 //    private Long managerId;
 //
 //    @OneToMany
-////    @Column(name="performance_review_id")
+//    @Column(name="performance_review_id")
 //    private ArrayList<Long> performanceReviewId;
+
+    @JsonIgnoreProperties({"employee"})
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
+    private List<EmergencyContact> emergencyContact;
 
     @Column(name="first_name")
     private String firstName;
@@ -76,10 +81,7 @@ public class Employee {
     @Column(name="nin")
     private String NIN;
 
-//    @OneToOne
-////    @Column(name="emergency_contact")
-//    private Long emergencyContactId;
-
+    @Autowired
     public Employee(String firstName,
                     String lastName,
                     LocalDate dob,
@@ -110,7 +112,7 @@ public class Employee {
         this.reasonableAdjustments = "";
         this.companyEquipment = new ArrayList<>();
         this.medicalInfo = "";
-//        this.emergencyContactId = (long)1;
+        this.emergencyContact = new ArrayList<>();
 //        this.performanceReviewId = new ArrayList<>();
     }
 
@@ -123,6 +125,14 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<EmergencyContact> getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(List<EmergencyContact> emergencyContact) {
+        this.emergencyContact = emergencyContact;
     }
 
     public String getFirstName() {
