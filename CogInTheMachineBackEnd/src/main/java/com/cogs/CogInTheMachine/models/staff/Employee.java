@@ -4,6 +4,7 @@ import com.cogs.CogInTheMachine.models.contact.EmergencyContact;
 import com.cogs.CogInTheMachine.models.enums.AccessEnum;
 import com.cogs.CogInTheMachine.models.enums.DepartmentEnum;
 import com.cogs.CogInTheMachine.models.enums.EquipmentEnum;
+import com.cogs.CogInTheMachine.models.enums.PositionEnum;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,7 +32,7 @@ public class Employee {
 
     @JsonIgnoreProperties({"employee"})
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private List<EmergencyContact> emergencyContact;
+    private List<EmergencyContact> emergencyContacts;
 
     @Column(name="first_name")
     private String firstName;
@@ -54,6 +55,9 @@ public class Employee {
     @Column(name="salary")
     private double salary;
 
+    @Column(name="position")
+    private PositionEnum position;
+
     @Column(name="department")
     private DepartmentEnum department;
 
@@ -75,6 +79,9 @@ public class Employee {
     @Column(name="email")
     private String email;
 
+    @Column(name="address")
+    private String address;
+
     @Column(name="medical_info")
     private String medicalInfo;
 
@@ -88,11 +95,13 @@ public class Employee {
                     LocalDate startDate,
                     AccessEnum permission,
                     double salary,
+                    PositionEnum position,
                     DepartmentEnum department,
                     String photo,
                     boolean active,
                     String contactNumber,
                     String email,
+                    String address,
                     String NIN
                     ) {
         this.firstName = firstName;
@@ -102,17 +111,19 @@ public class Employee {
         this.endDate = LocalDate.of(2300, 1, 1);
         this.permission = permission;
         this.salary = salary;
+        this.position = position;
         this.department = department;
         this.photo = photo;
         this.active = active;
         this.contactNumber = contactNumber;
         this.email = email;
+        this.address = address;
         this.NIN = NIN;
 //        this.managerId = (long)1;
         this.reasonableAdjustments = "";
         this.companyEquipment = new ArrayList<>();
         this.medicalInfo = "";
-        this.emergencyContact = new ArrayList<>();
+        this.emergencyContacts = new ArrayList<>();
 //        this.performanceReviewId = new ArrayList<>();
     }
 
@@ -127,12 +138,12 @@ public class Employee {
         this.id = id;
     }
 
-    public List<EmergencyContact> getEmergencyContact() {
-        return emergencyContact;
+    public List<EmergencyContact> getEmergencyContacts() {
+        return emergencyContacts;
     }
 
-    public void setEmergencyContact(List<EmergencyContact> emergencyContact) {
-        this.emergencyContact = emergencyContact;
+    public void setEmergencyContacts(List<EmergencyContact> emergencyContacts) {
+        this.emergencyContacts = emergencyContacts;
     }
 
     public String getFirstName() {
@@ -189,6 +200,14 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public PositionEnum getPosition() {
+        return position;
+    }
+
+    public void setPosition(PositionEnum position) {
+        this.position = position;
     }
 
     public DepartmentEnum getDepartment() {
@@ -261,5 +280,13 @@ public class Employee {
 
     public void setNIN(String NIN) {
         this.NIN = NIN;
+    }
+
+    public void addEmergencyContact (EmergencyContact emergencyContact) {
+        this.emergencyContacts.add(emergencyContact);
+    }
+
+    public void addCompanyEquipment (EquipmentEnum equipment) {
+        this.companyEquipment.add(equipment);
     }
 }
